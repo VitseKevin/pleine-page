@@ -1,0 +1,27 @@
+# Réponses – Lab Pleine Page
+
+**Q1.** Ligne 11 de `app.ts` : `protected readonly title = signal('pleine-page');`. `app.html` l'affiche avec `Hello, {{ title() }}`.
+
+**Q2.** Dans `app.routes.ts`, le tableau `routes` est vide (`[]`). Aucune route ne correspond à `/`, donc `<router-outlet />` n'a aucun composant à afficher.
+
+**Q3.** `app.html`, qu'on a entièrement remplacé (le texte affichait la valeur de `title` déclarée dans `app.ts`).
+
+**Q4.** On a ajouté la route `{ path: '', component: Catalogue }` : l'adresse `/` affiche maintenant Catalogue dans le `router-outlet`.
+
+**Q5.** Le 9e livre apparaît tout seul : `@for` parcourt le tableau `livres`, le HTML suit les données.
+
+**Q6.** `resultats = computed(...)` : il se recalcule dès que `filtre` change, et `resultats().length` suit.
+
+**Q7.** `toLowerCase()` appliqué à l'auteur et au filtre avant le `includes`.
+
+**Q8.** Erreur `NG0950: Input "id" is required but no value is available yet` : le routeur ne passe plus `:id` à l'input.
+
+**Q9.** `ajoute` reste à `true` : le composant n'est pas recréé, donc le signal garde son ancienne valeur, sans lien avec `id`.
+
+**Q10.** F5 recrée l'application et un nouvel objet Fiche : `ajoute` repart à `false`.
+
+**Q11.** Dans le navigateur (`localStorage`), ou dans un service partagé, voire sur un serveur.
+
+**Q12.** Code 404 (aucun fichier à cette adresse). GitHub renvoie `404.html`, copie de `index.html` : Angular démarre et le routeur lit l'URL.
+
+**Q13.** Vers `/pleine-page/`, grâce au `--base-href /pleine-page/` du build.
