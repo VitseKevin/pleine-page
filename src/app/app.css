@@ -1,3 +1,80 @@
-.entete { display: flex; justify-content: space-between; padding: 14px 24px; background: #1b232d; }
-.entete a { color: #fff; text-decoration: none; }
-main { max-width: 900px; margin: 0 auto; padding: 24px; }
+:host { display: flex; flex-direction: column; min-height: 100vh; }
+
+.entete {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(16px, 4vw, 40px);
+  background: rgba(245, 239, 228, .82);
+  backdrop-filter: blur(12px) saturate(1.4);
+  border-bottom: 1px solid var(--filet);
+}
+
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-size: 24px; }
+
+.logo b { font-weight: 700; }
+
+.logo i { color: var(--accent); font-weight: 500; }
+
+.logo svg { width: 30px; height: 30px; fill: none; stroke: var(--encre); stroke-width: 1.8; stroke-linejoin: round; transition: transform .4s; }
+
+.logo:hover svg { transform: rotate(-8deg) scale(1.08); }
+
+nav { display: flex; gap: 6px; }
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  color: var(--encre-douce);
+  transition: background .2s, color .2s;
+}
+
+nav a:hover { color: var(--encre); background: var(--papier-fonce); }
+
+nav a.actif { color: var(--carte); background: var(--encre); }
+
+.badge {
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background .3s, color .3s;
+}
+
+.badge.vide { background: var(--filet); color: var(--encre-douce); }
+
+main { flex: 1; width: 100%; max-width: 1120px; margin: 0 auto; padding: clamp(24px, 5vw, 56px) clamp(16px, 4vw, 40px); }
+
+.pied {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 24px clamp(16px, 4vw, 40px);
+  border-top: 1px solid var(--filet);
+  color: var(--encre-douce);
+  font-size: 13px;
+}
+
+.pied i { font-family: var(--serif); color: var(--accent); }
+
+@media (max-width: 520px) {
+  .logo { font-size: 20px; }
+  nav a { padding: 8px 10px; }
+}

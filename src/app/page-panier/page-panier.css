@@ -1,0 +1,78 @@
+h1 { margin: 10px 0 36px; font-size: clamp(36px, 5vw, 56px); font-weight: 500; }
+
+.contenu { display: grid; grid-template-columns: 1fr 320px; gap: 40px; align-items: start; animation: apparition .5s both; }
+
+.lignes { margin: 0; padding: 0; list-style: none; }
+
+.lignes li {
+  display: grid;
+  grid-template-columns: 64px 1fr auto auto;
+  gap: 20px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--filet);
+}
+
+.mini { display: block; }
+
+.texte { display: grid; gap: 4px; }
+
+.titre { font-family: var(--serif); font-size: 20px; font-weight: 600; text-decoration: none; }
+
+.titre:hover { color: var(--accent); }
+
+.texte span { font-size: 14px; color: var(--encre-douce); }
+
+.prix { font-family: var(--serif); font-size: 19px; font-weight: 600; }
+
+.retirer {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--encre-douce);
+  font-size: 22px;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.retirer:hover { background: var(--papier-fonce); color: var(--accent); }
+
+.recap {
+  position: sticky;
+  top: 100px;
+  display: grid;
+  gap: 14px;
+  padding: 28px;
+  border-radius: 20px;
+  background: var(--carte);
+  box-shadow: var(--ombre);
+}
+
+.ligne { display: flex; justify-content: space-between; font-size: 15px; color: var(--encre-douce); }
+
+.ligne.total { padding-top: 14px; border-top: 1px solid var(--filet); color: var(--encre); font-family: var(--serif); font-size: 24px; font-weight: 600; }
+
+.recap .bouton { justify-content: center; margin-top: 6px; opacity: .55; }
+
+.vider { border: 0; background: none; color: var(--encre-douce); font: 14px var(--sans); text-decoration: underline; cursor: pointer; }
+
+.vider:hover { color: var(--accent); }
+
+.vide {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  padding: 64px 24px;
+  border: 1.5px dashed var(--filet);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.vide-titre { margin: 0; font-family: var(--serif); font-size: 26px; }
+
+@media (max-width: 820px) {
+  .contenu { grid-template-columns: 1fr; }
+  .lignes li { grid-template-columns: 52px 1fr auto auto; gap: 14px; }
+}

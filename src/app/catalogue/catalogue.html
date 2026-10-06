@@ -1,8 +1,58 @@
-<h1>Catalogue</h1>
-<input placeholder="Filtrer par auteur" (input)="filtre.set($any($event.target).value)">
-<p>{{ resultats().length }} livre(s)</p>
-<ul>
-  @for (l of resultats(); track l.id) {
-    <li><a [routerLink]="['/livre', l.id]">{{ l.titre }}</a>, {{ l.auteur }}, {{ l.prix }} €</li>
+<section class="hero">
+  <p class="surtitre">Librairie indépendante · rentrée littéraire</p>
+  <h1>Des histoires<br><em>à pleine page.</em></h1>
+  <p class="intro">{{ total }} romans choisis un par un, des rivages perdus aux jardins lointains. Trouvez votre prochain compagnon de lecture.</p>
+</section>
+
+<section class="outils">
+  <label class="recherche">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+    <input placeholder="Filtrer par auteur" [value]="filtre()" (input)="filtre.set($any($event.target).value)">
+    @if (filtre()) {
+      <button type="button" class="effacer" (click)="filtre.set('')" aria-label="Effacer le filtre">×</button>
+    }
+  </label>
+  <label class="tri">
+    Trier
+    <select (change)="tri.set($any($event.target).value)">
+      <option value="catalogue">Sélection</option>
+      <option value="titre">Titre A → Z</option>
+      <option value="prix-croissant">Prix croissant</option>
+      <option value="prix-decroissant">Prix décroissant</option>
+    </select>
+  </label>
+</section>
+
+<div class="puces">
+  @for (a of auteurs; track a) {
+    <button type="button" class="puce" [class.active]="filtre().toLowerCase() === a.toLowerCase()" (click)="choisirAuteur(a)">{{ a }}</button>
   }
-</ul>
+</div>
+
+<p class="compteur">{{ resultats().length }} livre(s)</p>
+
+@if (resultats().length) {
+  <ul class="grille">
+    @for (l of resultats(); track l.id; let i = $index) {
+      <li class="carte" [style.--i]="i">
+        <a [routerLink]="['/livre', l.id]" class="lien-carte">
+          <app-couverture [livre]="l" />
+          <h3>{{ l.titre }}</h3>
+          <p class="auteur">{{ l.auteur }}</p>
+        </a>
+        <div class="bas">
+          <span class="prix">{{ l.prix | currency:'EUR' }}</span>
+          <button type="button" class="ajout" [class.ok]="panier.contient(l.id)" [disabled]="panier.contient(l.id)"
+            (click)="panier.ajouter(l.id)" [attr.aria-label]="'Ajouter ' + l.titre + ' au panier'">
+            {{ panier.contient(l.id) ? '✓' : '+' }}
+          </button>
+        </div>
+      </li>
+    }
+  </ul>
+} @else {
+  <div class="vide">
+    <p class="vide-titre">Aucun auteur ne répond à « {{ filtre() }} ».</p>
+    <button type="button" class="bouton secondaire" (click)="filtre.set('')">Voir tout le catalogue</button>
+  </div>
+}

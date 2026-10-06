@@ -1,7 +1,23 @@
 <header class="entete">
-  <a routerLink="/"><b>Pleine</b> Page</a>
-  <a routerLink="/">Catalogue</a>
+  <a routerLink="/" class="logo">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M16 8c-3-2.4-7.4-3-12-2.4v19c4.6-.6 9 0 12 2.4 3-2.4 7.4-3 12-2.4v-19C23.4 5 19 5.6 16 8Z" />
+      <path d="M16 8v19" />
+    </svg>
+    <span><b>Pleine</b> <i>Page</i></span>
+  </a>
+  <nav>
+    <a routerLink="/" routerLinkActive="actif" [routerLinkActiveOptions]="{ exact: true }">Catalogue</a>
+    <a routerLink="/panier" routerLinkActive="actif" class="lien-panier">
+      Panier
+      <span class="badge" [class.vide]="!panier.nombre()">{{ panier.nombre() }}</span>
+    </a>
+  </nav>
 </header>
 <main>
   <router-outlet />
 </main>
+<footer class="pied">
+  <span><b>Pleine</b> <i>Page</i> · librairie imaginaire</span>
+  <span>Projet Angular · M2 LDFS Ensitech · {{ annee }}</span>
+</footer>

@@ -1,0 +1,32 @@
+<p class="surtitre">Votre sélection</p>
+<h1>Mon panier</h1>
+
+@if (panier.nombre()) {
+  <div class="contenu">
+    <ul class="lignes">
+      @for (l of panier.livres(); track l.id) {
+        <li>
+          <a [routerLink]="['/livre', l.id]" class="mini"><app-couverture [livre]="l" /></a>
+          <div class="texte">
+            <a [routerLink]="['/livre', l.id]" class="titre">{{ l.titre }}</a>
+            <span>{{ l.auteur }}</span>
+          </div>
+          <span class="prix">{{ l.prix | currency:'EUR' }}</span>
+          <button type="button" class="retirer" (click)="panier.retirer(l.id)" [attr.aria-label]="'Retirer ' + l.titre">×</button>
+        </li>
+      }
+    </ul>
+    <aside class="recap">
+      <div class="ligne"><span>{{ panier.nombre() }} livre(s)</span><span>{{ panier.total() | currency:'EUR' }}</span></div>
+      <div class="ligne"><span>Livraison</span><span>Offerte</span></div>
+      <div class="ligne total"><span>Total</span><span>{{ panier.total() | currency:'EUR' }}</span></div>
+      <button type="button" class="bouton" disabled>Commander</button>
+      <button type="button" class="vider" (click)="panier.vider()">Vider le panier</button>
+    </aside>
+  </div>
+} @else {
+  <div class="vide">
+    <p class="vide-titre">Votre panier attend sa première histoire.</p>
+    <a routerLink="/" class="bouton">Parcourir le catalogue</a>
+  </div>
+}
