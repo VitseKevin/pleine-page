@@ -1,5 +1,9 @@
 Réponses - Lab Pleine Page
 
+Site (version du TP) : https://vitsekevin.github.io/pleine-page/
+Site (version innovation) : https://vitsekevin.github.io/pleine-page/innovation/
+Dépôt : https://github.com/VitseKevin/pleine-page (branche main pour le TP, branche innovation pour la partie innovation)
+
 Q1. Ligne 11 de app.ts : protected readonly title = signal('pleine-page'); app.html l'affiche avec Hello, {{ title() }}.
 
 Q2. Dans app.routes.ts, le tableau routes est vide. Aucune route ne correspond à /, donc router-outlet n'a aucun composant à afficher.
